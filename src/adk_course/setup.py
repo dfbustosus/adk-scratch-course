@@ -1,6 +1,7 @@
 """Setup utilities for the ADK Course package."""
 
 from pathlib import Path
+from typing import Optional
 
 import typer
 from rich.console import Console
@@ -16,7 +17,7 @@ from .utils import (
 console = Console()
 
 
-def setup_project(project_path: Path = None) -> None:
+def setup_project(project_path: Optional[Path] = None) -> None:
     """Set up a new ADK Course project."""
     if project_path is None:
         project_path = Path.cwd()

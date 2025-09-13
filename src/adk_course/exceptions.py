@@ -1,10 +1,12 @@
 """Custom exceptions for the ADK Course package."""
 
+from typing import Union
+
 
 class ADKError(Exception):
     """Base exception class for all ADK Course related errors."""
 
-    def __init__(self, message: str, code: str | None = None):
+    def __init__(self, message: str, code: Union[str, None] = None):
         """Initialize ADKError.
 
         Args:
@@ -19,7 +21,7 @@ class ADKError(Exception):
 class ConfigurationError(ADKError):
     """Raised when there's an error in configuration."""
 
-    def __init__(self, message: str, config_key: str | None = None):
+    def __init__(self, message: str, config_key: Union[str, None] = None):
         """Initialize ConfigurationError.
 
         Args:
@@ -33,7 +35,7 @@ class ConfigurationError(ADKError):
 class ValidationError(ADKError):
     """Raised when validation fails."""
 
-    def __init__(self, message: str, field: str | None = None):
+    def __init__(self, message: str, field: Union[str, None] = None):
         """Initialize ValidationError.
 
         Args:
@@ -59,7 +61,7 @@ class AuthenticationError(ADKError):
 class AgentError(ADKError):
     """Raised when there's an error in agent operations."""
 
-    def __init__(self, message: str, agent_id: str | None = None):
+    def __init__(self, message: str, agent_id: Union[str, None] = None):
         """Initialize AgentError.
 
         Args:
@@ -73,7 +75,7 @@ class AgentError(ADKError):
 class ResourceError(ADKError):
     """Raised when there's an error accessing resources."""
 
-    def __init__(self, message: str, resource_type: str | None = None):
+    def __init__(self, message: str, resource_type: Union[str, None] = None):
         """Initialize ResourceError.
 
         Args:
