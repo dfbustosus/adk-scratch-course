@@ -52,7 +52,8 @@ def validate() -> None:
         
         # Display Google Cloud status
         if status["google_cloud_setup"]:
-            console.print(f"\n[green]✓[/green] Google Cloud: Connected to {status.get('google_cloud_project', 'unknown project')}")
+            project = status.get('google_cloud_project', 'unknown project')
+            console.print(f"\n[green]✓[/green] Google Cloud: Connected to {project}")
         else:
             console.print("\n[yellow]⚠[/yellow] Google Cloud: Not configured")
         
@@ -62,17 +63,22 @@ def validate() -> None:
             for warning in status["warnings"]:
                 console.print(f"[yellow]⚠[/yellow] {warning}")
         
-        console.print("\n[green]✅ Environment validation completed successfully![/green]")
+        console.print(
+            "\n[green]✅ Environment validation completed successfully![/green]"
+        )
         
     except Exception as e:
-        console.print(f"\n[red]❌ Environment validation failed: {format_error_message(e)}[/red]")
+        error_msg = format_error_message(e)
+        console.print(f"\n[red]❌ Environment validation failed: {error_msg}[/red]")
         raise typer.Exit(1)
 
 
 @app.command()
 def init(
     name: str = typer.Argument(..., help="Agent name"),
-    output: Optional[Path] = typer.Option(None, "--output", "-o", help="Output directory"),
+    output: Optional[Path] = typer.Option(
+        None, "--output", "-o", help="Output directory"
+    ),
 ) -> None:
     """Initialize a new agent configuration."""
     console.print(f"\n[bold blue]🚀 Initializing agent: {name}[/bold blue]")
@@ -131,16 +137,20 @@ if __name__ == "__main__":
         
         console.print(f"[green]✅ Agent '{name}' initialized successfully![/green]")
         console.print(f"[cyan]📁 Configuration saved to: {config_path}[/cyan]")
-        console.print(f"[cyan]📄 Example code saved to: {examples_dir / f'{name}_example.py'}[/cyan]")
+        example_file = examples_dir / f"{name}_example.py"
+        console.print(f"[cyan]📄 Example code saved to: {example_file}[/cyan]")
         
     except Exception as e:
-        console.print(f"[red]❌ Failed to initialize agent: {format_error_message(e)}[/red]")
+        error_msg = format_error_message(e)
+        console.print(f"[red]❌ Failed to initialize agent: {error_msg}[/red]")
         raise typer.Exit(1)
 
 
 @app.command()
 def chat(
-    config_file: Path = typer.Option(Path("config.yaml"), "--config", "-c", help="Agent configuration file"),
+    config_file: Path = typer.Option(
+        Path("config.yaml"), "--config", "-c", help="Agent configuration file"
+    ),
 ) -> None:
     """Start an interactive chat session with an agent."""
     console.print("\n[bold blue]💬 Starting Interactive Chat[/bold blue]")
@@ -186,9 +196,16 @@ def chat(
                         console.print("\n[bold]Recent Conversation History:[/bold]")
                         for msg in history:
                             role_color = "blue" if msg.role == "user" else "green"
-                            console.print(f"[{role_color}]{msg.role.title()}:[/{role_color}] {msg.content}")
+                            role_title = msg.role.title()
+                            msg_text = (
+                                f"[{role_color}]{role_title}:[/{role_color}] "
+                                f"{msg.content}"
+                            )
+                            console.print(msg_text)
                     else:
-                        console.print("[yellow]No conversation history available[/yellow]")
+                        console.print(
+                            "[yellow]No conversation history available[/yellow]"
+                        )
                     continue
                 
                 # Process message
@@ -215,8 +232,12 @@ def chat(
 
 @app.command()
 def test(
-    config_file: Path = typer.Option(Path("config.yaml"), "--config", "-c", help="Agent configuration file"),
-    message: str = typer.Option("Hello, agent!", "--message", "-m", help="Test message"),
+    config_file: Path = typer.Option(
+        Path("config.yaml"), "--config", "-c", help="Agent configuration file"
+    ),
+    message: str = typer.Option(
+        "Hello, agent!", "--message", "-m", help="Test message"
+    ),
 ) -> None:
     """Test an agent with a simple message."""
     console.print(f"\n[bold blue]🧪 Testing agent with message: '{message}'[/bold blue]")
@@ -263,7 +284,8 @@ def version() -> None:
     console.print(f"\n[bold blue]ADK Course[/bold blue]")
     console.print(f"Version: [green]{__version__}[/green]")
     console.print(f"Author: [cyan]{__author__}[/cyan]")
-    console.print(f"Homepage: [link]https://github.com/dfbustosus/adk-scratch-course[/link]")
+    homepage_url = "https://github.com/dfbustosus/adk-scratch-course"
+    console.print(f"Homepage: [link]{homepage_url}[/link]")
 
 
 def main() -> None:
