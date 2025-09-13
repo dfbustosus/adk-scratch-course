@@ -24,9 +24,9 @@ Closes #(issue number)
 ## Changes Made
 <!-- Provide a detailed list of changes made in this PR -->
 
-- 
-- 
-- 
+-
+-
+-
 
 ## Lessons Affected
 <!-- If this change affects any lessons, list them here -->
@@ -48,6 +48,7 @@ Closes #(issue number)
 <!-- Describe the testing that has been performed -->
 
 ### Test Cases
+
 - [ ] All existing tests pass
 - [ ] New tests have been added for new functionality
 - [ ] Manual testing has been performed
@@ -55,6 +56,7 @@ Closes #(issue number)
 - [ ] Documentation examples have been tested
 
 ### Test Commands Run
+
 ```bash
 # Add the commands you ran to test your changes
 ```
@@ -66,6 +68,7 @@ Closes #(issue number)
 <!-- Mark completed items with an "x" -->
 
 ### Code Quality
+
 - [ ] My code follows the project's coding standards
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas
@@ -75,6 +78,7 @@ Closes #(issue number)
 - [ ] New and existing unit tests pass locally with my changes
 
 ### Documentation
+
 - [ ] I have updated the README if necessary
 - [ ] I have updated relevant lesson documentation
 - [ ] I have updated the CHANGELOG.md if necessary
@@ -82,11 +86,13 @@ Closes #(issue number)
 - [ ] API documentation has been updated (if applicable)
 
 ### Security
+
 - [ ] I have checked that no sensitive information is exposed
 - [ ] Security implications have been considered
 - [ ] No hardcoded credentials or secrets are included
 
 ### Performance
+
 - [ ] Performance implications have been considered
 - [ ] No unnecessary dependencies have been added
 - [ ] Code follows efficient algorithms and patterns
