@@ -38,8 +38,8 @@ services:
       - PYTHONPATH=/app/src
     command: >
       bash -c "pip install --user jupyterlab &&
-               jupyter lab --ip=0.0.0.0 --port=8888 --no-browser 
-               --allow-root --NotebookApp.token='' 
+               jupyter lab --ip=0.0.0.0 --port=8888 --no-browser
+               --allow-root --NotebookApp.token=''
                --NotebookApp.password=''"
     networks:
       - adk-network
@@ -54,8 +54,8 @@ services:
     ports:
       - "8080:8080"
     command: >
-      bash -c "cd /app/docs && 
-               make html && 
+      bash -c "cd /app/docs &&
+               make html &&
                python -m http.server 8080 --directory _build/html"
     networks:
       - adk-network

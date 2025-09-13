@@ -30,7 +30,8 @@ rules:
     max: 88
     level: warning
   new-line-at-end-of-file: disable
-  type: !ruby/regexp /^(yes|no|true|false|on|off)$/
+  truthy:
+    allowed-values: ['true', 'false', 'yes', 'no', 'on', 'off']
 
 ignore: |
   .github/
