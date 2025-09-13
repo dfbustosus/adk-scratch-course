@@ -115,7 +115,7 @@ autosummary_generate = True
 # Intersphinx configuration - remove failing endpoints due to network issues
 intersphinx_mapping = {
     # "python": ("https://docs.python.org/3/", None),  # Network issues
-    # "pydantic": ("https://docs.pydantic.dev/", None),  # Network issues 
+    # "pydantic": ("https://docs.pydantic.dev/", None),  # Network issues
     # "google-cloud": ("https://cloud.google.com/python/docs/reference/", None),  # Network issues
 }
 

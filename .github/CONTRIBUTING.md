@@ -1,6 +1,7 @@
 # Contributing to ADK Scratch Course
 
-Thank you for your interest in contributing to the ADK Scratch Course! This document provides guidelines and instructions for contributors.
+Thank you for your interest in contributing to the ADK Scratch Course! This document
+provides guidelines and instructions for contributors.
 
 ## 📋 Table of Contents
 
@@ -15,13 +16,16 @@ Thank you for your interest in contributing to the ADK Scratch Course! This docu
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by our Code of Conduct. By participating, you are expected to uphold this code. Please report unacceptable behavior to the project maintainers.
+This project and everyone participating in it is governed by our Code of Conduct.
+By participating, you are expected to uphold this code. Please report unacceptable
+behavior to the project maintainers.
 
 ## How Can I Contribute?
 
 ### 🐛 Reporting Bugs
 
-Before creating bug reports, please check the existing issues to avoid duplicates. When creating a bug report, include:
+Before creating bug reports, please check the existing issues to avoid duplicates.
+When creating a bug report, include:
 
 - A clear and descriptive title
 - Exact steps to reproduce the problem
@@ -68,25 +72,30 @@ Code contributions can include:
 ### Local Development Environment
 
 1. **Fork and Clone the Repository**
+
    ```bash
    git clone https://github.com/your-username/adk-scratch-course.git
    cd adk-scratch-course
    ```
 
 2. **Create a Virtual Environment**
+
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
 3. **Install Dependencies**
+
    ```bash
    pip install -e ".[dev]"
    ```
 
 4. **Install Pre-commit Hooks**
+
    ```bash
    pre-commit install
+   ```
    ```
 
 5. **Verify Setup**

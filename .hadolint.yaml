@@ -1,0 +1,13 @@
+# Hadolint configuration for Dockerfile linting
+# See https://github.com/hadolint/hadolint for more details
+
+ignored:
+  # Ignore pinning specific versions for base images in development
+  - DL3006
+  # Allow apt-get update without apt-get install in same RUN
+  - DL3009
+
+trustedRegistries:
+  - docker.io
+  - gcr.io
+  - quay.io

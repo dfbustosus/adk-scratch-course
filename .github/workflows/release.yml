@@ -61,7 +61,7 @@ jobs:
       run: |
         # Read changelog content
         CHANGELOG_CONTENT=$(cat CHANGELOG_RELEASE.md)
-        
+
         # Create release using GitHub CLI
         if [[ "${{ contains(steps.version.outputs.version, '-') }}" == "true" ]]; then
           gh release create "${{ steps.version.outputs.version }}" \
