@@ -1,6 +1,8 @@
 # ADK Scratch Course Documentation
 
-Welcome to the **ADK Scratch Course** documentation! This comprehensive course will guide you through building intelligent agents using Google Development Kit (GDK).
+Welcome to the **ADK Scratch Course** documentation! This comprehensive course
+will guide you through building intelligent agents using Google Development
+Kit (GDK).
 
 ## 🎯 What You'll Learn
 
@@ -91,20 +93,25 @@ Before starting this course, ensure you have:
 ## 🎓 Learning Path
 
 ### Beginner Path (Lessons 1-4)
+
 Start here if you're new to AI agents or Google Cloud:
+
 1. Introduction to GDK and Agents
 2. Development Environment Setup
 3. Basic Agent Architecture
 4. Agent Communication Patterns
 
 ### Intermediate Path (Lessons 5-8)
+
 Build on the basics with practical applications:
+
 5. Data Processing and Analysis
 6. Integration with Google Services
 7. Advanced Agent Behaviors
 8. Testing and Debugging Agents
 
 ### Advanced Path (Lessons 9-12)
+
 Master production-ready agent development:
 9. Performance Optimization
 10. Security and Authentication
