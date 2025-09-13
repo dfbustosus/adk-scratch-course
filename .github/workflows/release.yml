@@ -56,15 +56,23 @@ jobs:
         EOF
 
     - name: Create Release
-      uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.version.outputs.version }}
-        release_name: Release ${{ steps.version.outputs.version }}
-        body_path: CHANGELOG_RELEASE.md
-        draft: false
-        prerelease: ${{ contains(steps.version.outputs.version, '-') }}
+      run: |
+        # Read changelog content
+        CHANGELOG_CONTENT=$(cat CHANGELOG_RELEASE.md)
+        
+        # Create release using GitHub CLI
+        if [[ "${{ contains(steps.version.outputs.version, '-') }}" == "true" ]]; then
+          gh release create "${{ steps.version.outputs.version }}" \
+            --title "Release ${{ steps.version.outputs.version }}" \
+            --notes "$CHANGELOG_CONTENT" \
+            --prerelease
+        else
+          gh release create "${{ steps.version.outputs.version }}" \
+            --title "Release ${{ steps.version.outputs.version }}" \
+            --notes "$CHANGELOG_CONTENT"
+        fi
 
   build-and-publish:
     needs: create-release
@@ -74,7 +82,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: "3.11"
 
