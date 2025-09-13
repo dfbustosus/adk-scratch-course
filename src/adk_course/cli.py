@@ -245,12 +245,12 @@ def test(
     ),
 ) -> None:
     """Test an agent with a simple message."""
-    # Set default values if none provided  
+    # Set default values if none provided
     if config_file is None:
         config_file = Path("config.yaml")
     if message is None:
         message = "Hello, agent!"
-        
+
     console.print(
         f"\n[bold blue]🧪 Testing agent with message: '{message}'[/bold blue]"
     )

@@ -21,7 +21,7 @@ def setup_project(project_path: Optional[Path] = None) -> None:
     """Set up a new ADK Course project."""
     if project_path is None:
         project_path = Path.cwd()
-        
+
     console.print(
         f"\n[bold blue]🚀 Setting up ADK Course project in: {project_path}[/bold blue]"
     )

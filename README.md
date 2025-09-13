@@ -6,7 +6,9 @@
 [![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-A comprehensive course on Google Development Kit (GDK) for building intelligent agents. Learn to create, deploy, and manage AI-powered agents using Google Cloud Platform and modern Python development practices.
+A comprehensive course on Google Development Kit (GDK) for building intelligent
+agents. Learn to create, deploy, and manage AI-powered agents using Google Cloud
+Platform and modern Python development practices.
 
 ## 🎯 What You'll Learn
 
