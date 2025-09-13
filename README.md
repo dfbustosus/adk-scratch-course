@@ -41,16 +41,19 @@ This hands-on course covers everything from basic agent concepts to production d
 ### 🎯 Learning Tracks
 
 **🌱 Beginner Track** (Lessons 1-4)
+
 - Perfect for newcomers to AI agents
 - Focus on fundamentals and basic implementation
 - Hands-on exercises with guided solutions
 
 **🚀 Intermediate Track** (Lessons 5-8)  
+
 - Build practical, real-world applications
 - Integrate with Google Cloud services
 - Learn testing and debugging techniques
 
 **⚡ Advanced Track** (Lessons 9-12)
+
 - Production-ready development practices
 - Performance optimization and scaling
 - Security, monitoring, and maintenance
@@ -167,7 +170,7 @@ make format
 
 ## 🏗️ Repository Structure
 
-```
+```text
 adk-scratch-course/
 ├── .github/                 # GitHub workflows and templates
 ├── docs/                    # Documentation source
@@ -229,26 +232,31 @@ make clean         # Clean build artifacts
 This course prepares you to build various types of intelligent agents:
 
 ### 🤖 Customer Service Agents
+
 - Automated support and FAQ handling
 - Multi-language customer interactions
 - Escalation to human agents when needed
 
 ### 📊 Data Analysis Agents  
+
 - Automated report generation
 - Real-time data monitoring
 - Intelligent data visualization
 
 ### ✍️ Content Generation Agents
+
 - Blog post and article writing
 - Social media content creation
 - Documentation generation
 
 ### 🔄 Workflow Automation Agents
+
 - Business process automation
 - Task orchestration and scheduling
 - Integration with existing systems
 
 ### 🎯 Decision Support Agents
+
 - Recommendation systems
 - Risk assessment and analysis
 - Strategic planning assistance
@@ -256,24 +264,28 @@ This course prepares you to build various types of intelligent agents:
 ## 🌟 Features
 
 ### 🛠️ Developer Experience
+
 - **CLI Tools**: Rich command-line interface for development
 - **Hot Reloading**: Fast development iteration
 - **Interactive Chat**: Test agents in real-time
 - **Configuration Management**: YAML-based agent configuration
 
 ### ☁️ Google Cloud Integration
+
 - **Vertex AI**: Access to Google's ML models
 - **Natural Language**: Advanced text processing
 - **Vision AI**: Image and video analysis
 - **Speech Services**: Voice interaction capabilities
 
 ### 🔒 Production Ready
+
 - **Security**: Built-in authentication and authorization
 - **Monitoring**: Comprehensive logging and metrics
 - **Scaling**: Cloud-native deployment patterns
 - **Testing**: Extensive test coverage and CI/CD
 
 ### 📈 Performance
+
 - **Async/Await**: Non-blocking operations
 - **Caching**: Intelligent response caching
 - **Load Balancing**: Horizontal scaling support
@@ -301,6 +313,7 @@ Students who have completed this course have gone on to:
 
 1. Check if it's already reported in [Issues](https://github.com/dfbustosus/adk-scratch-course/issues)
 2. If not, create a new issue with:
+
    - Clear description of the problem
    - Steps to reproduce
    - Expected vs actual behavior
