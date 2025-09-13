@@ -1,6 +1,4 @@
-"""
-ADK Course - A comprehensive course on Google Development Kit (GDK) for
-building intelligent agents.
+"""ADK Course - A comprehensive course on Google Development Kit (GDK) for building intelligent agents.
 
 This package provides utilities, examples, and tools for learning and
 implementing Google Development Kit agents and AI systems.

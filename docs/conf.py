@@ -1,6 +1,5 @@
-# Configuration file for the Sphinx documentation builder.
+"""Configuration file for the Sphinx documentation builder."""
 
-import os
 import sys
 from pathlib import Path
 
@@ -29,9 +28,9 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx_autodoc_typehints",
     "myst_parser",
-    "sphinxcontrib.mermaid",
+    # "sphinxcontrib.mermaid",  # Not available in apt package
     "sphinx_copybutton",
-    "sphinx_design",
+    # "sphinx_design",  # Not available in apt package
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -44,7 +43,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # The suffix(es) of source filenames.
 source_suffix = {
     ".rst": None,
-    ".md": "myst_parser",
+    ".md": "myst",
 }
 
 # The master toctree document.
@@ -113,14 +112,14 @@ autodoc_default_options = {
 # Autosummary settings
 autosummary_generate = True
 
-# Intersphinx configuration
+# Intersphinx configuration - remove failing endpoints due to network issues
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/3/", None),
-    "pydantic": ("https://docs.pydantic.dev/", None),
-    "google-cloud": ("https://cloud.google.com/python/docs/reference/", None),
+    # "python": ("https://docs.python.org/3/", None),  # Network issues
+    # "pydantic": ("https://docs.pydantic.dev/", None),  # Network issues 
+    # "google-cloud": ("https://cloud.google.com/python/docs/reference/", None),  # Network issues
 }
 
-# MyST settings
+# MyST settings - remove linkify extension due to missing dependency
 myst_enable_extensions = [
     "amsmath",
     "colon_fence",
@@ -128,7 +127,7 @@ myst_enable_extensions = [
     "dollarmath",
     "html_admonition",
     "html_image",
-    "linkify",
+    # "linkify",  # Not available - requires additional package
     "replacements",
     "smartquotes",
     "substitution",

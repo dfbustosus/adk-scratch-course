@@ -1,7 +1,7 @@
 """Setup utilities for the ADK Course package."""
 
-import os
 from pathlib import Path
+from typing import Optional
 
 import typer
 from rich.console import Console
@@ -17,8 +17,11 @@ from .utils import (
 console = Console()
 
 
-def setup_project(project_path: Path = Path.cwd()) -> None:
+def setup_project(project_path: Optional[Path] = None) -> None:
     """Set up a new ADK Course project."""
+    if project_path is None:
+        project_path = Path.cwd()
+        
     console.print(
         f"\n[bold blue]🚀 Setting up ADK Course project in: {project_path}[/bold blue]"
     )
@@ -186,7 +189,7 @@ ADK_LOG_FORMAT=console
 
 
 def main() -> None:
-    """Main entry point for setup CLI."""
+    """Provide main entry point for setup CLI."""
     console.print("\n[bold blue]⚙️  ADK Course Setup[/bold blue]")
 
     # Ask what the user wants to do
