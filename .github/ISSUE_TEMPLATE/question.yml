@@ -1,0 +1,123 @@
+name: Question or Help
+description: Ask a question about using this project
+title: "[QUESTION] "
+labels: ["question", "help wanted"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your question! Please provide as much context as possible so we can help you effectively.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm the following before asking your question
+      options:
+        - label: I have read the documentation
+          required: true
+        - label: I have searched the existing issues for similar questions
+          required: true
+        - label: I have tried to find the answer in the lesson materials
+          required: true
+
+  - type: dropdown
+    id: question-category
+    attributes:
+      label: Question Category
+      description: What category does your question fall into?
+      options:
+        - Getting Started
+        - Lesson Content
+        - Code Examples
+        - Agent Development
+        - Google Development Kit (GDK)
+        - Installation/Setup
+        - Best Practices
+        - Troubleshooting
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: lesson-number
+    attributes:
+      label: Related Lesson (if applicable)
+      description: Which lesson is this question related to?
+      options:
+        - Not lesson-specific
+        - Lesson 01 - Introduction to GDK and Agents
+        - Lesson 02 - Setting Up Your Development Environment
+        - Lesson 03 - Basic Agent Architecture
+        - Lesson 04 - Agent Communication Patterns
+        - Lesson 05 - Data Processing and Analysis
+        - Lesson 06 - Integration with Google Services
+        - Lesson 07 - Advanced Agent Behaviors
+        - Lesson 08 - Testing and Debugging Agents
+        - Lesson 09 - Performance Optimization
+        - Lesson 10 - Security and Authentication
+        - Lesson 11 - Deployment and Monitoring
+        - Lesson 12 - Advanced Topics and Best Practices
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: Please be as specific as possible about what you're trying to achieve or understand.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Provide context about what you're working on
+      placeholder: What are you trying to build? What's your end goal?
+
+  - type: textarea
+    id: attempted-solutions
+    attributes:
+      label: What You've Tried
+      description: What have you already tried to solve this problem?
+      placeholder: List any approaches you've attempted, documentation you've read, etc.
+
+  - type: textarea
+    id: code-sample
+    attributes:
+      label: Relevant Code (if applicable)
+      description: If your question involves code, please share the relevant parts
+      render: python
+
+  - type: textarea
+    id: error-message
+    attributes:
+      label: Error Messages (if applicable)
+      description: If you're encountering errors, please share the full error message
+      render: shell
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Information
+      description: Information about your environment
+      value: |
+        - OS: [e.g., Ubuntu 22.04, Windows 11, macOS Monterey]
+        - Python Version: [e.g., 3.11.0]
+        - Package Version: [e.g., 1.0.0]
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: help-type
+    attributes:
+      label: Type of Help Needed
+      description: What kind of help are you looking for?
+      options:
+        - label: Explanation of a concept
+        - label: Help debugging an issue
+        - label: Guidance on best practices
+        - label: Code review or feedback
+        - label: Resource recommendations

@@ -1,0 +1,34 @@
+# Code owners for the ADK Scratch Course repository
+# This file defines who owns different parts of the codebase
+
+# Global owners (will be requested for review on all PRs)
+* @dfbustosus
+
+# GitHub workflows and repository configuration
+/.github/ @dfbustosus
+
+# Documentation
+/docs/ @dfbustosus
+*.md @dfbustosus
+
+# Python source code
+/src/ @dfbustosus
+/tests/ @dfbustosus
+
+# Lesson content - These may have subject matter experts assigned later
+/lessons/ @dfbustosus
+
+# Configuration files
+pyproject.toml @dfbustosus
+requirements*.txt @dfbustosus
+Makefile @dfbustosus
+.pre-commit-config.yaml @dfbustosus
+Dockerfile* @dfbustosus
+docker-compose* @dfbustosus
+
+# CI/CD and automation
+/.github/workflows/ @dfbustosus
+
+# Security-related files
+/.github/SECURITY.md @dfbustosus
+/scripts/security/ @dfbustosus

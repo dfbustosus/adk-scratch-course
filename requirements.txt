@@ -1,0 +1,15 @@
+# Production requirements
+google-cloud-aiplatform>=1.38.0
+google-auth>=2.23.0
+google-auth-oauthlib>=1.1.0
+google-auth-httplib2>=0.1.1
+requests>=2.31.0
+pydantic>=2.4.0
+click>=8.1.7
+rich>=13.6.0
+typer>=0.9.0
+httpx>=0.25.0
+python-dotenv>=1.0.0
+pyyaml>=6.0.1
+jinja2>=3.1.2
+structlog>=23.2.0
