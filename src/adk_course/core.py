@@ -2,7 +2,7 @@
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 from datetime import datetime
 import uuid
 import logging
@@ -10,7 +10,7 @@ import logging
 from pydantic import BaseModel, Field, ConfigDict
 from google.cloud import aiplatform
 
-from .exceptions import AgentError, ConfigurationError, ValidationError
+from .exceptions import AgentError, ConfigurationError
 from .utils import setup_logging
 
 

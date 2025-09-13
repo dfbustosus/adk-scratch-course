@@ -6,6 +6,10 @@ This package provides utilities, examples, and tools for learning and
 implementing Google Development Kit agents and AI systems.
 """
 
+from .core import Agent, AgentConfig, BasicAgent
+from .exceptions import ADKError, ConfigurationError, ValidationError
+from .utils import setup_logging, validate_environment
+
 try:
     from ._version import __version__
 except ImportError:
@@ -15,10 +19,6 @@ except ImportError:
 __author__ = "ADK Course Contributors"
 __email__ = "contributors@adk-course.dev"
 __license__ = "Apache License 2.0"
-
-from .core import Agent, AgentConfig, BasicAgent
-from .utils import setup_logging, validate_environment
-from .exceptions import ADKError, ConfigurationError, ValidationError
 
 __all__ = [
     "Agent",
