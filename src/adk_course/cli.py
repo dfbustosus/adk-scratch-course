@@ -104,15 +104,15 @@ def init(
         examples_dir = output / "examples"
         examples_dir.mkdir(exist_ok=True)
 
-        example_code = f'''"""
+        example_code = f"""\"\"\"
 Example usage of the {name} agent.
-"""
+\"\"\"
 import asyncio
 from pathlib import Path
 from adk_course import AgentConfig, BasicAgent
 
 async def main():
-    """Example agent usage."""
+    \"\"\"Example agent usage.\"\"\"
     # Load configuration
     config_path = Path(__file__).parent / "config.yaml"
     config_dict = load_config(config_path)
@@ -131,12 +131,12 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-'''
+"""
 
         with open(examples_dir / f"{name}_example.py", "w") as f:
             f.write(example_code)
 
-        console.print(f"[green]✅ Agent '{name}' initialized successfully![/green]")
+        console.print(f"[green]✅ Agent \"{name}\" initialized successfully![/green]")
         console.print(f"[cyan]📁 Configuration saved to: {config_path}[/cyan]")
         example_file = examples_dir / f"{name}_example.py"
         console.print(f"[cyan]📄 Example code saved to: {example_file}[/cyan]")
