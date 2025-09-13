@@ -6,7 +6,7 @@ class ADKError(Exception):
 
     def __init__(self, message: str, code: str | None = None):
         """Initialize ADKError.
-        
+
         Args:
             message: Error message
             code: Optional error code for categorization
@@ -21,7 +21,7 @@ class ConfigurationError(ADKError):
 
     def __init__(self, message: str, config_key: str | None = None):
         """Initialize ConfigurationError.
-        
+
         Args:
             message: Error message
             config_key: The configuration key that caused the error
@@ -35,7 +35,7 @@ class ValidationError(ADKError):
 
     def __init__(self, message: str, field: str | None = None):
         """Initialize ValidationError.
-        
+
         Args:
             message: Error message
             field: The field that failed validation
@@ -49,7 +49,7 @@ class AuthenticationError(ADKError):
 
     def __init__(self, message: str = "Authentication failed"):
         """Initialize AuthenticationError.
-        
+
         Args:
             message: Error message
         """
@@ -61,7 +61,7 @@ class AgentError(ADKError):
 
     def __init__(self, message: str, agent_id: str | None = None):
         """Initialize AgentError.
-        
+
         Args:
             message: Error message
             agent_id: The ID of the agent that caused the error
@@ -75,7 +75,7 @@ class ResourceError(ADKError):
 
     def __init__(self, message: str, resource_type: str | None = None):
         """Initialize ResourceError.
-        
+
         Args:
             message: Error message
             resource_type: The type of resource that caused the error

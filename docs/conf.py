@@ -66,7 +66,7 @@ html_theme_options = {
     "sticky_navigation": True,
     "navigation_depth": 4,
     "includehidden": True,
-    "titles_only": False
+    "titles_only": False,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -107,7 +107,7 @@ autodoc_default_options = {
     "member-order": "bysource",
     "special-members": "__init__",
     "undoc-members": True,
-    "exclude-members": "__weakref__"
+    "exclude-members": "__weakref__",
 }
 
 # Autosummary settings
