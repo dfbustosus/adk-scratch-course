@@ -240,9 +240,7 @@ def test(
     config_file: Optional[Path] = typer.Option(
         None, "--config", "-c", help="Agent configuration file"
     ),
-    message: Optional[str] = typer.Option(
-        None, "--message", "-m", help="Test message"
-    ),
+    message: Optional[str] = typer.Option(None, "--message", "-m", help="Test message"),
 ) -> None:
     """Test an agent with a simple message."""
     # Set default values if none provided
