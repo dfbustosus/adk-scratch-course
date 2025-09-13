@@ -5,7 +5,12 @@ This package provides utilities, examples, and tools for learning and implementi
 Google Development Kit agents and AI systems.
 """
 
-__version__ = "1.0.0"
+try:
+    from ._version import __version__
+except ImportError:
+    # Fallback version if setuptools-scm is not available
+    __version__ = "0.1.0"
+
 __author__ = "ADK Course Contributors"
 __email__ = "contributors@adk-course.dev"
 __license__ = "Apache License 2.0"
