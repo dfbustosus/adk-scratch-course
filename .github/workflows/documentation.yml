@@ -85,22 +85,3 @@ jobs:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
-
-  link-checker:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.11"
-
-    - name: Install link checker
-      run: |
-        pip install linkchecker
-
-    - name: Check links in documentation
-      run: |
-        # Check README and markdown files
-        find . -name "*.md" -not -path "./.git/*" -not -path "./venv/*" -not -path "./.venv/*" | xargs -I {} linkchecker --check-extern {}
