@@ -1,0 +1,99 @@
+version: '3.8'
+
+services:
+  # Main development environment
+  adk-dev:
+    build: .
+    container_name: adk-development
+    volumes:
+      - .:/app
+      - ~/.config/gcloud:/home/adk/.config/gcloud:ro
+      - ~/.gitconfig:/home/adk/.gitconfig:ro
+      - adk-venv:/home/adk/.local
+    environment:
+      - GOOGLE_CLOUD_PROJECT=${GOOGLE_CLOUD_PROJECT:-}
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials/service-account.json
+      - ADK_LOG_LEVEL=${ADK_LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app/src
+    ports:
+      - "8000:8000"
+      - "8080:8080"
+    stdin_open: true
+    tty: true
+    command: tail -f /dev/null
+    networks:
+      - adk-network
+
+  # Jupyter notebook service
+  jupyter:
+    build: .
+    container_name: adk-jupyter
+    volumes:
+      - .:/app
+      - jupyter-data:/home/adk/.jupyter
+    ports:
+      - "8888:8888"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - PYTHONPATH=/app/src
+    command: >
+      bash -c "pip install --user jupyterlab &&
+               jupyter lab --ip=0.0.0.0 --port=8888 --no-browser 
+               --allow-root --NotebookApp.token='' 
+               --NotebookApp.password=''"
+    networks:
+      - adk-network
+
+  # Documentation server
+  docs:
+    build: .
+    container_name: adk-docs
+    volumes:
+      - .:/app
+      - docs-build:/app/docs/_build
+    ports:
+      - "8080:8080"
+    command: >
+      bash -c "cd /app/docs && 
+               make html && 
+               python -m http.server 8080 --directory _build/html"
+    networks:
+      - adk-network
+
+  # Redis for caching (optional)
+  redis:
+    image: redis:7-alpine
+    container_name: adk-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - adk-network
+
+  # PostgreSQL for data storage (optional)
+  postgres:
+    image: postgres:15-alpine
+    container_name: adk-postgres
+    environment:
+      - POSTGRES_DB=adk_course
+      - POSTGRES_USER=adk_user
+      - POSTGRES_PASSWORD=adk_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - adk-network
+
+volumes:
+  adk-venv:
+  jupyter-data:
+  docs-build:
+  redis-data:
+  postgres-data:
+
+networks:
+  adk-network:
+    driver: bridge
