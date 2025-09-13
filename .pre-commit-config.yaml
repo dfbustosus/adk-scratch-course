@@ -48,7 +48,7 @@ repos:
         args:
           - --max-line-length=88
           - --extend-ignore=E203,W503,E501
-          - --per-file-ignores=__init__.py:F401,tests/*:S101
+          - --per-file-ignores=__init__.py:F401,tests/*:S101,src/adk_course/cli.py:B008
 
   # Type checking
   - repo: https://github.com/pre-commit/mirrors-mypy

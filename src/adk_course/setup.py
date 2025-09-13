@@ -178,7 +178,7 @@ ADK_LOG_FORMAT=console
         console.print(
             f"\n[green]🎉 Project '{project_name}' created successfully![/green]"
         )
-        console.print(f"\n[cyan]To get started:[/cyan]")
+        console.print("\n[cyan]To get started:[/cyan]")
         console.print(f"1. cd {project_path}")
         console.print("2. Set up your Google Cloud credentials")
         console.print("3. Run: adk-course validate")

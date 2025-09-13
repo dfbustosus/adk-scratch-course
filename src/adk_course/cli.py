@@ -28,7 +28,7 @@ app = typer.Typer(
 console = Console()
 
 
-@app.command()
+@app.command()  # type: ignore[misc]
 def validate() -> None:
     """Validate the development environment."""
     console.print("\n[bold blue]🔍 Validating Environment[/bold blue]")
@@ -74,7 +74,7 @@ def validate() -> None:
         raise typer.Exit(1)
 
 
-@app.command()
+@app.command()  # type: ignore[misc]
 def init(
     name: str = typer.Argument(..., help="Agent name"),
     output: Optional[Path] = typer.Option(
@@ -147,7 +147,7 @@ if __name__ == "__main__":
         raise typer.Exit(1)
 
 
-@app.command()
+@app.command()  # type: ignore[misc]
 def chat(
     config_file: Optional[Path] = typer.Option(
         None, "--config", "-c", help="Agent configuration file"
@@ -235,7 +235,7 @@ def chat(
         raise typer.Exit(1)
 
 
-@app.command()
+@app.command()  # type: ignore[misc]
 def test(
     config_file: Optional[Path] = typer.Option(
         None, "--config", "-c", help="Agent configuration file"
@@ -291,7 +291,7 @@ def test(
         raise typer.Exit(1)
 
 
-@app.command()
+@app.command()  # type: ignore[misc]
 def version() -> None:
     """Display version information."""
     from . import __author__, __version__
@@ -304,7 +304,7 @@ def version() -> None:
 
 
 def main() -> None:
-    """Main entry point for the CLI."""
+    """Serve as main entry point for the CLI."""
     try:
         setup_logging()
         app()

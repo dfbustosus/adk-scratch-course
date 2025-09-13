@@ -4,7 +4,7 @@ import logging
 import os
 import sys
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 import structlog
 
@@ -70,7 +70,7 @@ def validate_environment() -> Dict[str, Any]:
     Raises:
         ValidationError: If critical environment issues are found
     """
-    status = {
+    status: Dict[str, Any] = {
         "python_version": sys.version,
         "python_path": sys.executable,
         "working_directory": os.getcwd(),
