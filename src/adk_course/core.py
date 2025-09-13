@@ -222,7 +222,7 @@ class BasicAgent(Agent):
 
             # For now, return a simple echo response
             # In a real implementation, this would use the GDK API
-            response_content = f"Agent '{self.config.name}' received: {message}"
+            response_content = f"Agent \"{self.config.name}\" received: {message}"
 
             # Create assistant response
             assistant_message = AgentMessage(role="assistant", content=response_content)

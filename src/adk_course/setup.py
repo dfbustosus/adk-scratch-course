@@ -102,7 +102,8 @@ This is an ADK Course project for learning Google Development Kit (GDK) agents.
 
 ## Learn More
 
-Visit the [ADK Course documentation](https://dfbustosus.github.io/adk-scratch-course) for detailed tutorials and examples.
+Visit the [ADK Course documentation](https://dfbustosus.github.io/adk-scratch-course)
+for detailed tutorials and examples.
 """
 
         readme_path = project_path / "README.md"

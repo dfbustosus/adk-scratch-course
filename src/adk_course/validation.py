@@ -24,10 +24,12 @@ def main() -> None:
         console.print("\n[cyan]📊 Summary:[/cyan]")
         console.print(f"  - Python: {status['python_version']}")
         console.print(
-            f"  - Environment variables: {len(status['environment_variables'])} configured"
+            f"  - Environment variables: "
+            f"{len(status['environment_variables'])} configured"
         )
         console.print(
-            f"  - Google Cloud: {'✓ Connected' if status['google_cloud_setup'] else '⚠ Not configured'}"
+            f"  - Google Cloud: "
+            f"{'✓ Connected' if status['google_cloud_setup'] else '⚠ Not configured'}"
         )
         console.print(f"  - Warnings: {len(status['warnings'])}")
 
