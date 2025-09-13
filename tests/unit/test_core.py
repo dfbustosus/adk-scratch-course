@@ -1,13 +1,12 @@
 """Unit tests for the core module."""
 
-import uuid
 from datetime import datetime
 from unittest.mock import Mock, patch
 
 import pytest
 
 from adk_course.core import AgentConfig, AgentMessage, BasicAgent
-from adk_course.exceptions import AgentError, ConfigurationError
+from adk_course.exceptions import ConfigurationError
 
 
 class TestAgentConfig:

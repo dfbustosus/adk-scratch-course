@@ -1,7 +1,5 @@
 """Validation utilities for the ADK Course package."""
 
-from pathlib import Path
-
 import typer
 from rich.console import Console
 
@@ -11,7 +9,7 @@ console = Console()
 
 
 def main() -> None:
-    """Main entry point for the validation CLI."""
+    """Provide main entry point for the validation CLI."""
     console.print("\n[bold blue]🔍 ADK Course Environment Validation[/bold blue]")
 
     try:
@@ -23,7 +21,7 @@ def main() -> None:
         )
 
         # Show summary
-        console.print(f"\n[cyan]📊 Summary:[/cyan]")
+        console.print("\n[cyan]📊 Summary:[/cyan]")
         console.print(f"  - Python: {status['python_version']}")
         console.print(
             f"  - Environment variables: {len(status['environment_variables'])} configured"

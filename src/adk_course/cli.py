@@ -149,12 +149,16 @@ if __name__ == "__main__":
 
 @app.command()
 def chat(
-    config_file: Path = typer.Option(
-        Path("config.yaml"), "--config", "-c", help="Agent configuration file"
+    config_file: Optional[Path] = typer.Option(
+        None, "--config", "-c", help="Agent configuration file"
     ),
 ) -> None:
     """Start an interactive chat session with an agent."""
     console.print("\n[bold blue]💬 Starting Interactive Chat[/bold blue]")
+
+    # Set default value if none provided
+    if config_file is None:
+        config_file = Path("config.yaml")
 
     try:
         # Load configuration
@@ -233,14 +237,20 @@ def chat(
 
 @app.command()
 def test(
-    config_file: Path = typer.Option(
-        Path("config.yaml"), "--config", "-c", help="Agent configuration file"
+    config_file: Optional[Path] = typer.Option(
+        None, "--config", "-c", help="Agent configuration file"
     ),
-    message: str = typer.Option(
-        "Hello, agent!", "--message", "-m", help="Test message"
+    message: Optional[str] = typer.Option(
+        None, "--message", "-m", help="Test message"
     ),
 ) -> None:
     """Test an agent with a simple message."""
+    # Set default values if none provided  
+    if config_file is None:
+        config_file = Path("config.yaml")
+    if message is None:
+        message = "Hello, agent!"
+        
     console.print(
         f"\n[bold blue]🧪 Testing agent with message: '{message}'[/bold blue]"
     )
@@ -283,10 +293,10 @@ def test(
 
 @app.command()
 def version() -> None:
-    """Show version information."""
+    """Display version information."""
     from . import __author__, __version__
 
-    console.print(f"\n[bold blue]ADK Course[/bold blue]")
+    console.print("\n[bold blue]ADK Course[/bold blue]")
     console.print(f"Version: [green]{__version__}[/green]")
     console.print(f"Author: [cyan]{__author__}[/cyan]")
     homepage_url = "https://github.com/dfbustosus/adk-scratch-course"
