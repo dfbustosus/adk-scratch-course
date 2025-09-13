@@ -77,7 +77,7 @@ html_static_path = ["_static"]
 # to template names.
 html_sidebars = {
     "**": [
-        "relations.html", # needs 'show_related': True theme option to display
+        "relations.html",  # needs 'show_related': True theme option to display
         "searchbox.html",
     ]
 }
@@ -142,5 +142,7 @@ myst_url_schemes = ("http", "https", "mailto")
 todo_include_todos = True
 
 # Copy button settings
-copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
+copybutton_prompt_text = (
+    r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
+)
 copybutton_prompt_is_regexp = True

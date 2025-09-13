@@ -23,7 +23,8 @@ def setup_project(project_path: Optional[Path] = None) -> None:
         project_path = Path.cwd()
 
     console.print(
-        f"\n[bold blue]🚀 Setting up ADK Course project in: {project_path}[/bold blue]"
+        f"\n[bold blue]🚀 Setting up ADK Course project in: "
+        f"{project_path}[/bold blue]"
     )
 
     try:
@@ -45,7 +46,9 @@ def setup_project(project_path: Optional[Path] = None) -> None:
         config = create_agent_config_template()
         config_path = project_path / "configs" / "default-agent.yaml"
         save_config(config, config_path)
-        console.print(f"[green]✓[/green] Created default configuration: {config_path}")
+        console.print(
+            f"[green]✓[/green] Created default configuration: {config_path}"
+        )
 
         # Create .env template
         env_template = """# Google Cloud Configuration
@@ -61,7 +64,9 @@ ADK_LOG_FORMAT=json
         env_path = project_path / ".env.template"
         with open(env_path, "w") as f:
             f.write(env_template)
-        console.print(f"[green]✓[/green] Created environment template: {env_path}")
+        console.print(
+            f"[green]✓[/green] Created environment template: {env_path}"
+        )
 
         # Create README
         readme_content = """# ADK Course Project
@@ -102,23 +107,30 @@ This is an ADK Course project for learning Google Development Kit (GDK) agents.
 
 ## Learn More
 
-Visit the [ADK Course documentation](https://dfbustosus.github.io/adk-scratch-course)
+Visit the [ADK Course documentation]
+(https://dfbustosus.github.io/adk-scratch-course)
 for detailed tutorials and examples.
 """
 
         readme_path = project_path / "README.md"
         with open(readme_path, "w") as f:
             f.write(readme_content)
-        console.print(f"[green]✓[/green] Created README: {readme_path}")
+        console.print(
+            f"[green]✓[/green] Created README: {readme_path}"
+        )
 
-        console.print("\n[green]🎉 Project setup completed successfully![/green]")
+        console.print(
+            "\n[green]🎉 Project setup completed successfully![/green]"
+        )
         console.print("\n[cyan]Next steps:[/cyan]")
         console.print("1. Copy .env.template to .env and update values")
         console.print("2. Run: adk-course validate")
         console.print("3. Run: adk-course init my-first-agent")
 
     except Exception as e:
-        console.print(f"[red]❌ Project setup failed: {format_error_message(e)}[/red]")
+        console.print(
+            f"[red]❌ Project setup failed: {format_error_message(e)}[/red]"
+        )
         raise typer.Exit(1)
 
 
@@ -132,7 +144,9 @@ def interactive_setup() -> None:
     project_path = Path.cwd() / project_name
 
     if project_path.exists():
-        if not Confirm.ask(f"Directory {project_path} already exists. Continue?"):
+        if not Confirm.ask(
+            f"Directory {project_path} already exists. Continue?"
+        ):
             console.print("[yellow]Setup cancelled.[/yellow]")
             return
 
@@ -144,7 +158,9 @@ def interactive_setup() -> None:
     # Get agent information
     console.print("\n[bold]Default Agent Configuration[/bold]")
     agent_name = Prompt.ask("Default agent name", default="my-agent")
-    agent_description = Prompt.ask("Agent description", default="My first ADK agent")
+    agent_description = Prompt.ask(
+        "Agent description", default="My first ADK agent"
+    )
 
     try:
         # Set up project
@@ -177,7 +193,8 @@ ADK_LOG_FORMAT=console
             f.write(env_content)
 
         console.print(
-            f"\n[green]🎉 Project '{project_name}' created successfully![/green]"
+            f"\n[green]🎉 Project '{project_name}' created "
+            f"successfully![/green]"
         )
         console.print("\n[cyan]To get started:[/cyan]")
         console.print(f"1. cd {project_path}")

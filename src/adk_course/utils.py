@@ -96,14 +96,18 @@ def validate_environment() -> Dict[str, Any]:
         if value:
             status["environment_variables"][var] = "✓ Set"
         else:
-            status["errors"].append(f"Required environment variable {var} is not set")
+            status["errors"].append(
+                f"Required environment variable {var} is not set"
+            )
 
     for var in optional_env_vars:
         value = os.getenv(var)
         if value:
             status["environment_variables"][var] = "✓ Set"
         else:
-            status["warnings"].append(f"Optional environment variable {var} is not set")
+            status["warnings"].append(
+                f"Optional environment variable {var} is not set"
+            )
 
     # Check Google Cloud setup
     try:
@@ -113,12 +117,15 @@ def validate_environment() -> Dict[str, Any]:
         status["google_cloud_setup"] = True
         status["google_cloud_project"] = project_id
     except Exception as e:
-        status["warnings"].append(f"Google Cloud authentication not configured: {e}")
+        status["warnings"].append(
+            f"Google Cloud authentication not configured: {e}"
+        )
 
     # Raise error if critical issues found
     if status["errors"]:
         raise ValidationError(
-            f"Environment validation failed: {'; '.join(status['errors'])}"
+            f"Environment validation failed: "
+            f"{' ; '.join(status['errors'])}"
         )
 
     return status
@@ -140,20 +147,28 @@ def load_config(config_path: Path) -> Dict[str, Any]:
         import yaml
 
         if not config_path.exists():
-            raise ConfigurationError(f"Configuration file not found: {config_path}")
+            raise ConfigurationError(
+                f"Configuration file not found: {config_path}"
+            )
 
         with open(config_path, "r", encoding="utf-8") as f:
             config = yaml.safe_load(f)
 
         if not isinstance(config, dict):
-            raise ConfigurationError("Configuration file must contain a YAML object")
+            raise ConfigurationError(
+                "Configuration file must contain a YAML object"
+            )
 
         return config
 
     except yaml.YAMLError as e:
-        raise ConfigurationError(f"Invalid YAML in configuration file: {e}")
+        raise ConfigurationError(
+            f"Invalid YAML in configuration file: {e}"
+        )
     except Exception as e:
-        raise ConfigurationError(f"Failed to load configuration: {e}")
+        raise ConfigurationError(
+            f"Failed to load configuration: {e}"
+        )
 
 
 def save_config(config: Dict[str, Any], config_path: Path) -> None:
@@ -256,7 +271,9 @@ def validate_file_path(file_path: Path, must_exist: bool = True) -> None:
 
     # Check if parent directory exists for file creation
     if not must_exist and not file_path.parent.exists():
-        raise ValidationError(f"Parent directory does not exist: {file_path.parent}")
+        raise ValidationError(
+            f"Parent directory does not exist: {file_path.parent}"
+        )
 
 
 def ensure_directory(directory: Path) -> None:

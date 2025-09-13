@@ -40,14 +40,18 @@ class AgentConfig(BaseModel):
 
     # Model configuration
     model_name: str = Field("gemini-pro", description="Model to use")
-    temperature: float = Field(0.7, ge=0.0, le=2.0, description="Model temperature")
+    temperature: float = Field(
+        0.7, ge=0.0, le=2.0, description="Model temperature"
+    )
     max_tokens: int = Field(1024, ge=1, le=8192, description="Maximum tokens")
     top_p: float = Field(0.9, ge=0.0, le=1.0, description="Top-p sampling")
     top_k: int = Field(40, ge=1, le=100, description="Top-k sampling")
 
     # Agent behavior
     system_prompt: str = Field("", description="System prompt for the agent")
-    max_retries: int = Field(3, ge=0, le=10, description="Maximum retry attempts")
+    max_retries: int = Field(
+        3, ge=0, le=10, description="Maximum retry attempts"
+    )
     timeout: float = Field(
         30.0, ge=1.0, le=300.0, description="Request timeout in seconds"
     )
@@ -128,8 +132,12 @@ class Agent(ABC):
 
         # Initialize Google Cloud AI Platform
         try:
-            aiplatform.init(project=config.project_id, location=config.location)
-            logger.info(f"Connected to Google Cloud project: {config.project_id}")
+            aiplatform.init(
+                project=config.project_id, location=config.location
+            )
+            logger.info(
+                f"Connected to Google Cloud project: {config.project_id}"
+            )
         except Exception as e:
             raise ConfigurationError(f"Failed to initialize Google Cloud: {e}")
 
@@ -221,11 +229,15 @@ class BasicAgent(Agent):
             self.add_message(user_message)
 
             # For now, return a simple echo response
-            # In a real implementation, this would use the GDK API
-            response_content = f"Agent \"{self.config.name}\" received: {message}"
+            # In real implementation, this would use the GDK API
+            response_content = (
+                f'Agent "{self.config.name}" received: {message}'
+            )
 
             # Create assistant response
-            assistant_message = AgentMessage(role="assistant", content=response_content)
+            assistant_message = AgentMessage(
+                role="assistant", content=response_content
+            )
             self.add_message(assistant_message)
 
             logger.info(f"Processed message for agent: {self.config.name}")
@@ -243,5 +255,8 @@ class BasicAgent(Agent):
         if not self.session_history:
             return "No conversation history available."
 
-        messages = [f"{msg.role}: {msg.content}" for msg in self.session_history[-10:]]
+        messages = [
+            f"{msg.role}: {msg.content}"
+            for msg in self.session_history[-10:]
+        ]
         return "\n".join(messages)

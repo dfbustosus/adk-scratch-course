@@ -23,7 +23,9 @@ from .utils import (
 
 app = typer.Typer(
     name="adk-course",
-    help="ADK Course CLI - Tools for working with Google Development Kit agents",
+    help=(
+        "ADK Course CLI - Tools for working with Google Development Kit agents"
+    ),
 )
 console = Console()
 
@@ -54,7 +56,9 @@ def validate() -> None:
         # Display Google Cloud status
         if status["google_cloud_setup"]:
             project = status.get("google_cloud_project", "unknown project")
-            console.print(f"\n[green]✓[/green] Google Cloud: Connected to {project}")
+            console.print(
+                f"\n[green]✓[/green] Google Cloud: Connected to {project}"
+            )
         else:
             console.print("\n[yellow]⚠[/yellow] Google Cloud: Not configured")
 
@@ -70,7 +74,9 @@ def validate() -> None:
 
     except Exception as e:
         error_msg = format_error_message(e)
-        console.print(f"\n[red]❌ Environment validation failed: {error_msg}[/red]")
+        console.print(
+            f"\n[red]❌ Environment validation failed: {error_msg}[/red]"
+        )
         raise typer.Exit(1)
 
 
@@ -136,7 +142,9 @@ if __name__ == "__main__":
         with open(examples_dir / f"{name}_example.py", "w") as f:
             f.write(example_code)
 
-        console.print(f"[green]✅ Agent \"{name}\" initialized successfully![/green]")
+        console.print(
+            f'[green]✅ Agent "{name}" initialized successfully![/green]'
+        )
         console.print(f"[cyan]📁 Configuration saved to: {config_path}[/cyan]")
         example_file = examples_dir / f"{name}_example.py"
         console.print(f"[cyan]📄 Example code saved to: {example_file}[/cyan]")
@@ -166,10 +174,18 @@ def chat(
         config = AgentConfig(**config_dict)
 
         console.print(f"[green]✅ Loaded agent: {config.name}[/green]")
-        console.print(f"[cyan]📝 Description: {config.description}[/cyan]")
-        console.print("\n[yellow]Type 'quit' or 'exit' to end the session[/yellow]")
-        console.print("[yellow]Type 'status' to see agent status[/yellow]")
-        console.print("[yellow]Type 'history' to see conversation history[/yellow]\n")
+        console.print(
+            f"[cyan]📝 Description: {config.description}[/cyan]"
+        )
+        console.print(
+            "\n[yellow]Type 'quit' or 'exit' to end the session[/yellow]"
+        )
+        console.print(
+            "[yellow]Type 'status' to see agent status[/yellow]"
+        )
+        console.print(
+            "[yellow]Type 'history' to see conversation history[/yellow]\n"
+        )
 
         # Create agent
         agent = BasicAgent(config)
@@ -198,9 +214,13 @@ def chat(
                 if user_input.lower() == "history":
                     history = agent.get_history(limit=10)
                     if history:
-                        console.print("\n[bold]Recent Conversation History:[/bold]")
+                        console.print(
+                            "\n[bold]Recent Conversation History:[/bold]"
+                        )
                         for msg in history:
-                            role_color = "blue" if msg.role == "user" else "green"
+                            role_color = (
+                                "blue" if msg.role == "user" else "green"
+                            )
                             role_title = msg.role.title()
                             msg_text = (
                                 f"[{role_color}]{role_title}:[/{role_color}] "
@@ -209,7 +229,8 @@ def chat(
                             console.print(msg_text)
                     else:
                         console.print(
-                            "[yellow]No conversation history available[/yellow]"
+                            "[yellow]No conversation history "
+                            "available[/yellow]"
                         )
                     continue
 
@@ -225,13 +246,17 @@ def chat(
                 console.print(f"[green]Agent:[/green] {response}")
 
             except KeyboardInterrupt:
-                console.print("\n\n[blue]👋 Chat session interrupted. Goodbye![/blue]")
+                console.print(
+                    "\n\n[blue]👋 Chat session interrupted. Goodbye![/blue]"
+                )
                 break
             except Exception as e:
                 console.print(f"[red]❌ Error: {format_error_message(e)}[/red]")
 
     except Exception as e:
-        console.print(f"[red]❌ Failed to start chat: {format_error_message(e)}[/red]")
+        console.print(
+            f"[red]❌ Failed to start chat: {format_error_message(e)}[/red]"
+        )
         raise typer.Exit(1)
 
 
@@ -240,7 +265,9 @@ def test(
     config_file: Optional[Path] = typer.Option(
         None, "--config", "-c", help="Agent configuration file"
     ),
-    message: Optional[str] = typer.Option(None, "--message", "-m", help="Test message"),
+    message: Optional[str] = typer.Option(
+        None, "--message", "-m", help="Test message"
+    ),
 ) -> None:
     """Test an agent with a simple message."""
     # Set default values if none provided
@@ -307,13 +334,19 @@ def main() -> None:
         setup_logging()
         app()
     except ADKError as e:
-        console.print(f"[red]❌ ADK Error: {format_error_message(e)}[/red]")
+        console.print(
+            f"[red]❌ ADK Error: {format_error_message(e)}[/red]"
+        )
         raise typer.Exit(1)
     except KeyboardInterrupt:
-        console.print("\n[blue]👋 Operation cancelled by user[/blue]")
+        console.print(
+            "\n[blue]👋 Operation cancelled by user[/blue]"
+        )
         raise typer.Exit(0)
     except Exception as e:
-        console.print(f"[red]❌ Unexpected error: {format_error_message(e)}[/red]")
+        console.print(
+            f"[red]❌ Unexpected error: {format_error_message(e)}[/red]"
+        )
         raise typer.Exit(1)
 
 

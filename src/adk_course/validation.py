@@ -10,7 +10,9 @@ console = Console()
 
 def main() -> None:
     """Provide main entry point for the validation CLI."""
-    console.print("\n[bold blue]🔍 ADK Course Environment Validation[/bold blue]")
+    console.print(
+        "\n[bold blue]🔍 ADK Course Environment Validation[/bold blue]"
+    )
 
     try:
         status = validate_environment()
@@ -27,10 +29,11 @@ def main() -> None:
             f"  - Environment variables: "
             f"{len(status['environment_variables'])} configured"
         )
-        console.print(
-            f"  - Google Cloud: "
-            f"{'✓ Connected' if status['google_cloud_setup'] else '⚠ Not configured'}"
+        google_cloud_status = (
+            "✓ Connected" if status["google_cloud_setup"]
+            else "⚠ Not configured"
         )
+        console.print(f"  - Google Cloud: {google_cloud_status}")
         console.print(f"  - Warnings: {len(status['warnings'])}")
 
         if status["warnings"]:
@@ -40,7 +43,8 @@ def main() -> None:
 
     except Exception as e:
         console.print(
-            f"\n[red]❌ Environment validation failed: {format_error_message(e)}[/red]"
+            f"\n[red]❌ Environment validation failed: "
+            f"{format_error_message(e)}[/red]"
         )
         raise typer.Exit(1)
 

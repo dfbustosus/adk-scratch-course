@@ -85,7 +85,9 @@ class TestConfigFiles:
         """Test loading non-existent config file."""
         config_path = temp_dir / "nonexistent.yaml"
 
-        with pytest.raises(ConfigurationError, match="Configuration file not found"):
+        with pytest.raises(
+            ConfigurationError, match="Configuration file not found"
+        ):
             load_config(config_path)
 
     def test_save_config_creates_directory(self, temp_dir):
