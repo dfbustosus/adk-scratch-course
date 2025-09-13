@@ -2,7 +2,7 @@
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 from datetime import datetime
 import uuid
 import logging
@@ -10,7 +10,7 @@ import logging
 from pydantic import BaseModel, Field, ConfigDict
 from google.cloud import aiplatform
 
-from .exceptions import AgentError, ConfigurationError, ValidationError
+from .exceptions import AgentError, ConfigurationError
 from .utils import setup_logging
 
 
@@ -49,12 +49,16 @@ class AgentConfig(BaseModel):
     # Agent behavior
     system_prompt: str = Field("", description="System prompt for the agent")
     max_retries: int = Field(3, ge=0, le=10, description="Maximum retry attempts")
-    timeout: float = Field(30.0, ge=1.0, le=300.0, description="Request timeout in seconds")
+    timeout: float = Field(
+        30.0, ge=1.0, le=300.0, description="Request timeout in seconds"
+    )
     
     # Advanced settings
     enable_safety: bool = Field(True, description="Enable safety filters")
     enable_logging: bool = Field(True, description="Enable request logging")
-    custom_parameters: Dict[str, Any] = Field(default_factory=dict, description="Custom parameters")
+    custom_parameters: Dict[str, Any] = Field(
+        default_factory=dict, description="Custom parameters"
+    )
     
     def validate_config(self) -> None:
         """Validate the configuration.
@@ -69,7 +73,9 @@ class AgentConfig(BaseModel):
             raise ConfigurationError("Agent name is required", "name")
         
         if self.temperature < 0 or self.temperature > 2:
-            raise ConfigurationError("Temperature must be between 0 and 2", "temperature")
+            raise ConfigurationError(
+                "Temperature must be between 0 and 2", "temperature"
+            )
 
 
 @dataclass
@@ -129,7 +135,9 @@ class Agent(ABC):
             raise ConfigurationError(f"Failed to initialize Google Cloud: {e}")
     
     @abstractmethod
-    async def process_message(self, message: str, context: Optional[Dict[str, Any]] = None) -> str:
+    async def process_message(
+        self, message: str, context: Optional[Dict[str, Any]] = None
+    ) -> str:
         """Process a message and return a response.
         
         Args:
@@ -193,7 +201,9 @@ class BasicAgent(Agent):
     It can be used as a starting point for more complex agent implementations.
     """
     
-    async def process_message(self, message: str, context: Optional[Dict[str, Any]] = None) -> str:
+    async def process_message(
+        self, message: str, context: Optional[Dict[str, Any]] = None
+    ) -> str:
         """Process a message using the configured model.
         
         Args:
