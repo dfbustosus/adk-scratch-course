@@ -76,7 +76,7 @@ clean:
 	find . -type f -name "*.pyc" -delete
 
 build: clean
-	python -m build
+	python3 -m build
 
 publish: build
 	twine check dist/*
