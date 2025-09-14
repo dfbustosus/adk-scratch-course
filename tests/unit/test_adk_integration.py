@@ -66,7 +66,7 @@ def test_validate_adk_environment_vertex(
 def test_run_adk_web(monkeypatch: pytest.MonkeyPatch) -> None:
     calls: Dict[str, Any] = {}
 
-    def _run(args: list[str], check: bool = False) -> DummyProc:
+    def _run(args: list[str], check: bool = False, **kwargs) -> DummyProc:
         calls["args"] = args
         calls["check"] = check
         return DummyProc(0)
@@ -80,7 +80,7 @@ def test_run_adk_web(monkeypatch: pytest.MonkeyPatch) -> None:
 def test_run_adk_run_no_message(monkeypatch: pytest.MonkeyPatch) -> None:
     recorded: Dict[str, Any] = {}
 
-    def _run(args: list[str], check: bool = False) -> DummyProc:
+    def _run(args: list[str], check: bool = False, **kwargs) -> DummyProc:
         recorded["args"] = args
         recorded["check"] = check
         return DummyProc(0)
@@ -95,7 +95,7 @@ def test_run_adk_run_with_message(monkeypatch: pytest.MonkeyPatch) -> None:
     captured: Dict[str, Any] = {}
 
     def _run(
-        args: list[str], input: bytes, check: bool = False  # noqa: A002
+        args: list[str], input: bytes, check: bool = False, **kwargs  # noqa: A002
     ) -> DummyProc:
         captured["args"] = args
         captured["input"] = input
@@ -128,5 +128,7 @@ def test_create_adk_agent_skeleton_default_cwd(
     # Force Path.cwd() to return tmp_path
     monkeypatch.setattr(Path, "cwd", lambda: tmp_path)
     pkg = ai.create_adk_agent_skeleton("demo2")
-    assert pkg == tmp_path / "demo2"
+    # The default path is now relative to the project root's 'agents' dir.
+    expected_path = Path(__file__).resolve().parent.parent.parent / "agents" / "demo2"
+    assert pkg == expected_path
     assert pkg.exists()
