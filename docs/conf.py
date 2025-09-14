@@ -9,9 +9,9 @@ sys.path.insert(0, str(project_root / "src"))
 
 # -- Project information -----------------------------------------------------
 
-project = "ADK Scratch Course"
-copyright = "2024, ADK Course Contributors"
-author = "ADK Course Contributors"
+project = "ADK Toolkit"
+copyright = "2024, ADK Toolkit Contributors"
+author = "ADK Toolkit Contributors"
 
 # The full version, including alpha/beta/rc tags
 release = "1.0.0"
