@@ -1,0 +1,19 @@
+# Markdown Lint Configuration
+
+# MD013: Line length
+MD013:
+  line_length: 120
+  code_blocks: false
+  tables: false
+  headings: false
+
+# MD033: Inline HTML
+MD033:
+  allowed_elements: ['br', 'kbd', 'sub', 'sup']
+
+# MD041: First line in file should be a top level header
+MD041: false
+
+# MD046: Code block style
+MD046:
+  style: fenced
