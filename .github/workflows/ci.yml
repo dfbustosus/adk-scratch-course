@@ -75,13 +75,7 @@ jobs:
       run: |
         pytest --cov=src/adk --cov-report=xml --cov-report=html --cov-report=term
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        file: ./coverage.xml
-        fail_ci_if_error: true
-
-
+  
   docs:
     runs-on: ubuntu-latest
     steps:
