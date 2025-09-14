@@ -193,7 +193,9 @@ def run_adk_run(package: str, message: Optional[str] = None) -> int:
     agents_dir = Path(__file__).resolve().parent.parent.parent / "agents"
 
     if message is None:
-        proc = subprocess.run(["adk", "run", package], check=False, cwd=agents_dir)  # nosec
+        proc = subprocess.run(
+            ["adk", "run", package], check=False, cwd=agents_dir
+        )  # nosec
         return proc.returncode
 
     proc = subprocess.run(  # nosec
