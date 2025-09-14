@@ -5,8 +5,8 @@ from unittest.mock import patch
 
 import pytest
 
-from adk_course.core import AgentConfig, AgentMessage, BasicAgent
-from adk_course.exceptions import ConfigurationError
+from adk.core import AgentConfig, AgentMessage, BasicAgent
+from adk.exceptions import ConfigurationError
 
 
 class TestAgentConfig:
@@ -79,9 +79,7 @@ class TestAgentMessage:
     def test_message_with_metadata(self):
         """Test creating message with metadata."""
         metadata = {"source": "test", "priority": "high"}
-        message = AgentMessage(
-            role="assistant", content="Response", metadata=metadata
-        )
+        message = AgentMessage(role="assistant", content="Response", metadata=metadata)
 
         assert message.metadata == metadata
         assert message.to_dict()["metadata"] == metadata
@@ -117,9 +115,7 @@ class TestBasicAgent:
 
         response = await agent.process_message("Hello, agent!")
 
-        assert (
-            "Agent 'test-agent' received: Hello, agent!" in response
-        )
+        assert "Agent 'test-agent' received: Hello, agent!" in response
         assert len(agent.session_history) == 2  # user + assistant message
 
         # Check message history

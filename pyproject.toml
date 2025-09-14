@@ -3,24 +3,22 @@ requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
-name = "adk-course"
-description = "A comprehensive course on Google Development Kit (GDK) for building intelligent agents"
+name = "adk"
+description = "A toolkit for building intelligent agents with Google's Agent Development Kit (ADK)"
 readme = "README.md"
 license = {file = "LICENSE"}
 authors = [
-    {name = "ADK Course Contributors", email = "contributors@adk-course.dev"},
+    {name = "ADK Toolkit Contributors", email = "davidbustosusta@gmail.com"},
 ]
 maintainers = [
-    {name = "Daniel Bustos", email = "dfbustosus@example.com"},
+    {name = "David Bustos", email = "davidbustosusta@gmail.com"},
 ]
 keywords = [
-    "google-development-kit",
-    "gdk",
+    "agent-development-kit",
+    "adk",
     "agents",
     "artificial-intelligence",
     "machine-learning",
-    "tutorial",
-    "course",
     "python",
 ]
 classifiers = [
@@ -56,15 +54,16 @@ dependencies = [
     "pyyaml>=6.0.1",
     "jinja2>=3.1.2",
     "structlog>=23.2.0",
+    "google-adk",
 ]
 dynamic = ["version"]
 
 [project.urls]
-Homepage = "https://github.com/dfbustosus/adk-scratch-course"
-Documentation = "https://dfbustosus.github.io/adk-scratch-course"
-Repository = "https://github.com/dfbustosus/adk-scratch-course.git"
-Issues = "https://github.com/dfbustosus/adk-scratch-course/issues"
-Changelog = "https://github.com/dfbustosus/adk-scratch-course/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/dfbustosus/google-adk-toolkit"
+Documentation = "https://dfbustosus.github.io/google-adk-toolkit"
+Repository = "https://github.com/dfbustosus/google-adk-toolkit.git"
+Issues = "https://github.com/dfbustosus/google-adk-toolkit/issues"
+Changelog = "https://github.com/dfbustosus/google-adk-toolkit/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = [
@@ -85,6 +84,7 @@ dev = [
     "bandit>=1.7.5",
     "safety>=2.3.0",
     "tox>=4.6.0",
+    "types-PyYAML>=6.0.0",
 ]
 test = [
     "pytest>=7.4.0",
@@ -115,22 +115,20 @@ examples = [
     "plotly>=5.15.0",
 ]
 all = [
-    "adk-course[dev,test,docs,examples]"
+    "adk[dev,test,docs,examples]"
 ]
 
 [project.scripts]
-adk-course = "adk_course.cli:main"
-adk-validate = "adk_course.validation:main"
-adk-setup = "adk_course.setup:main"
+adk = "adk.cli:main"
 
 [tool.hatch.version]
 source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "src/adk_course/_version.py"
+version-file = "src/adk/_version.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/adk_course"]
+packages = ["src/adk"]
 
 [tool.hatch.build.targets.sdist]
 exclude = [
@@ -206,7 +204,7 @@ addopts = [
     "-ra",
     "--strict-markers",
     "--strict-config",
-    "--cov=src/adk_course",
+    "--cov=src/adk",
     "--cov-report=term-missing",
     "--cov-report=html",
     "--cov-report=xml",
@@ -228,13 +226,13 @@ filterwarnings = [
 
 # Coverage configuration
 [tool.coverage.run]
-source = ["src/adk_course"]
+source = ["src/adk"]
 omit = [
     "*/tests/*",
     "*/test_*.py",
     "*/__init__.py",
     "*/conftest.py",
-    "src/adk_course/_version.py",
+    "src/adk/_version.py",
 ]
 
 [tool.coverage.report]

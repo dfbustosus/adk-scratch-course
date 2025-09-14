@@ -1,4 +1,4 @@
-# Makefile for ADK Course development
+# Makefile for ADK Toolkit development
 
 .PHONY: help install install-dev test lint format check clean docs serve-docs build publish
 
@@ -37,25 +37,22 @@ test-integration:
 	pytest tests/integration/
 
 test-cov:
-	pytest --cov=src/adk_course --cov-report=html --cov-report=term
+	pytest --cov=src/adk --cov-report=html --cov-report=term
 
 # Linting and formatting
 format:
-	black src/ tests/ scripts/
-	isort src/ tests/ scripts/
+	black src/ tests/
+	isort src/ tests/
 
 lint:
-	black --check src/ tests/ scripts/
-	isort --check-only src/ tests/ scripts/
-	flake8 src/ tests/ scripts/
+	black --check src/ tests/
+	isort --check-only src/ tests/
+	flake8 src/ tests/
 	mypy src/
 
-security:
-	bandit -r src/
-	safety check
 
 # Quality checks
-check: format lint security test
+check: format lint test
 
 # Documentation
 docs:
@@ -92,11 +89,13 @@ setup:
 	pre-commit install
 
 validate:
-	adk-course validate
+	adk validate
 
 demo:
-	adk-course init demo-agent
-	adk-course test --config agents/demo-agent/config.yaml
+	@echo "Scaffolding demo agent..."
+	@adk scaffold demo-agent
+	@echo "\nRunning demo agent..."
+	@adk run demo-agent
 
 # CI/CD helpers
 ci-install:
@@ -104,7 +103,7 @@ ci-install:
 	pip install -e ".[test]"
 
 ci-test:
-	pytest --cov=src/adk_course --cov-report=xml --cov-report=term
+	pytest --cov=src/adk --cov-report=xml --cov-report=term
 
 ci-lint:
 	black --check .

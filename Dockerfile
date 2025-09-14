@@ -1,9 +1,9 @@
-# Docker configuration for ADK Course
+# Docker configuration for ADK Toolkit
 
 FROM python:3.11-slim
 
-LABEL maintainer="ADK Course Contributors"
-LABEL description="Development environment for ADK Scratch Course"
+LABEL maintainer="ADK Contributors"
+LABEL description="Development environment for ADK Toolkit"
 LABEL version="1.0.0"
 
 # Set environment variables
@@ -54,14 +54,13 @@ ENV PATH="/home/adk/.local/bin:${PATH}"
 RUN mkdir -p /app/{logs,data,credentials,agents}
 
 # Set up default configuration
-RUN adk-setup || true
 
 # Expose ports for development
 EXPOSE 8000 8080 8888
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "import adk_course; print('OK')" || exit 1
+    CMD python -c "import adk; print('OK')" || exit 1
 
 # Default command
 CMD ["bash"]

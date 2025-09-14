@@ -1,14 +1,50 @@
-"""Test configuration and fixtures for ADK Course tests."""
+"""Test configuration and fixtures for ADK tests."""
 
 import os
+import sys
 import tempfile
+import types
 from pathlib import Path
 from unittest.mock import Mock, patch
 
 import pytest
 
-from adk_course import AgentConfig, BasicAgent
-from adk_course.utils import create_agent_config_template
+# Ensure local src/ is importable without installing the package
+ROOT = Path(__file__).resolve().parents[1]
+SRC = ROOT / "src"
+if str(SRC) not in sys.path:
+    sys.path.insert(0, str(SRC))
+
+# Provide a lightweight stub for google.cloud.aiplatform if missing
+if "google" not in sys.modules:
+    sys.modules["google"] = types.ModuleType("google")
+if "google.cloud" not in sys.modules:
+    cloud_mod = types.ModuleType("google.cloud")
+    sys.modules["google.cloud"] = cloud_mod
+    sys.modules["google"].cloud = cloud_mod
+if "google.cloud.aiplatform" not in sys.modules:
+    ai_mod = types.ModuleType("google.cloud.aiplatform")
+
+    def _init_stub(*args, **kwargs):
+        return None
+
+    ai_mod.init = _init_stub
+    sys.modules["google.cloud.aiplatform"] = ai_mod
+
+# Stub google.auth.default used by utils.validate_environment
+if "google.auth" not in sys.modules:
+    auth_mod = types.ModuleType("google.auth")
+
+    def _default_stub():
+        return (Mock(), "test-project")
+
+    auth_mod.default = _default_stub  # type: ignore[attr-defined]
+    sys.modules["google.auth"] = auth_mod
+    # attach to google package as attribute for attribute traversal
+    sys.modules["google"].auth = auth_mod
+
+from adk.core import AgentConfig, BasicAgent  # noqa: E402
+from adk.utils import create_agent_config_template  # noqa: E402
 
 
 @pytest.fixture

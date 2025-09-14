@@ -1,64 +1,13 @@
-# ADK Scratch Course 🤖
+# Google ADK Toolkit 🤖
 
-[![CI/CD](https://github.com/dfbustosus/adk-scratch-course/actions/workflows/ci.yml/badge.svg)](https://github.com/dfbustosus/adk-scratch-course/actions/workflows/ci.yml)
-[![Documentation](https://github.com/dfbustosus/adk-scratch-course/actions/workflows/documentation.yml/badge.svg)](https://dfbustosus.github.io/adk-scratch-course)
+[![CI/CD](https://github.com/dfbustosus/google-adk-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/dfbustosus/google-adk-toolkit/actions/workflows/ci.yml)
+[![Documentation](https://github.com/dfbustosus/google-adk-toolkit/actions/workflows/documentation.yml/badge.svg)](https://dfbustosus.github.io/google-adk-toolkit)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-A comprehensive course on Google Development Kit (GDK) for building intelligent
-agents. Learn to create, deploy, and manage AI-powered agents using Google Cloud
-Platform and modern Python development practices.
+A developer-focused toolkit for building, testing, and deploying intelligent agents with Google's Agent Development Kit (ADK). This repository provides a professional-grade foundation for creating production-ready AI agents on Google Cloud.
 
-## 🎯 What You'll Learn
-
-This hands-on course covers everything from basic agent concepts to production deployment:
-
-- **🤖 Agent Fundamentals**: Understanding intelligent agents and their architecture
-- **🛠️ Development Setup**: Professional Python and Google Cloud environment
-- **🔧 Agent Building**: Creating agents with different behaviors and capabilities
-- **🌐 Cloud Integration**: Leveraging Google Cloud AI services and APIs
-- **🚀 Production Deployment**: Scaling, monitoring, and maintaining agent systems
-- **🔒 Security & Best Practices**: Authentication, authorization, and secure development
-
-## 📚 Course Structure
-
-### 🎓 Learning Path
-
-| Lesson | Topic | Duration | Level |
-|--------|-------|----------|-------|
-| [01](lessons/lesson-01/) | Introduction to GDK and Agents | 2-3 hours | Beginner |
-| [02](lessons/lesson-02/) | Development Environment Setup | 3-4 hours | Intermediate |
-| [03](lessons/lesson-03/) | Basic Agent Architecture | 2-3 hours | Intermediate |
-| [04](lessons/lesson-04/) | Agent Communication Patterns | 3-4 hours | Intermediate |
-| [05](lessons/lesson-05/) | Data Processing and Analysis | 4-5 hours | Intermediate |
-| [06](lessons/lesson-06/) | Google Services Integration | 4-5 hours | Advanced |
-| [07](lessons/lesson-07/) | Advanced Agent Behaviors | 5-6 hours | Advanced |
-| [08](lessons/lesson-08/) | Testing and Debugging | 3-4 hours | Advanced |
-| [09](lessons/lesson-09/) | Performance Optimization | 4-5 hours | Advanced |
-| [10](lessons/lesson-10/) | Security and Authentication | 3-4 hours | Advanced |
-| [11](lessons/lesson-11/) | Deployment and Monitoring | 4-5 hours | Expert |
-| [12](lessons/lesson-12/) | Best Practices & Advanced Topics | 3-4 hours | Expert |
-
-### 🎯 Learning Tracks
-
-**🌱 Beginner Track** (Lessons 1-4)
-
-- Perfect for newcomers to AI agents
-- Focus on fundamentals and basic implementation
-- Hands-on exercises with guided solutions
-
-**🚀 Intermediate Track** (Lessons 5-8)  
-
-- Build practical, real-world applications
-- Integrate with Google Cloud services
-- Learn testing and debugging techniques
-
-**⚡ Advanced Track** (Lessons 9-12)
-
-- Production-ready development practices
-- Performance optimization and scaling
-- Security, monitoring, and maintenance
 
 ## 🚀 Quick Start
 
@@ -72,23 +21,75 @@ This hands-on course covers everything from basic agent concepts to production d
 ### Installation
 
 ```bash
-# Install the ADK Course framework
-pip install adk-course
+# Clone the repository
+git clone https://github.com/dfbustosus/google-adk-toolkit.git
+cd google-adk-toolkit
+
+# Install the toolkit in editable mode with dev dependencies
+pip install -e ".[dev]"
 
 # Validate your environment
-adk-course validate
+adk validate
 
-# Create your first agent
-adk-course init my-first-agent
-
-# Test the agent
-adk-course test --config agents/my-first-agent/config.yaml
+# Scaffold your first agent
+adk scaffold my_first_agent
 ```
+
+## 🧰 Using the Official Google ADK (Recommended)
+
+This repository now includes a ready-to-run example agent using the official
+Google Agent Development Kit (ADK).
+
+### 1) Install ADK
+
+```bash
+pip install google-adk
+```
+
+### 2) Configure authentication
+
+Create `multi_tool_agent/.env` from the provided template:
+
+```bash
+cp multi_tool_agent/.env.template multi_tool_agent/.env
+```
+
+Choose ONE of the following in that file:
+
+- Google AI Studio API key
+  - `GOOGLE_GENAI_USE_VERTEXAI=FALSE`
+  - `GOOGLE_API_KEY=<your_api_key>`
+
+- Google Cloud Vertex AI
+  - `GOOGLE_GENAI_USE_VERTEXAI=TRUE`
+  - `GOOGLE_CLOUD_PROJECT=<your_project_id>`
+  - `GOOGLE_CLOUD_LOCATION=us-central1` (or your region)
+  - Run once locally: `gcloud auth application-default login`
+
+### 3) Run the ADK Dev UI
+
+From the repository root (parent of `multi_tool_agent/`):
+
+```bash
+adk web
+```
+
+Open the URL printed in the terminal (usually http://localhost:8000) and
+select `multi_tool_agent` at the top-left dropdown.
+
+### 4) Run the agent in the terminal
+
+```bash
+adk run multi_tool_agent
+```
+
+This example agent is defined in `multi_tool_agent/agent.py` and exposes two
+tools: `get_weather` and `get_current_time`, matching the ADK Quickstart.
 
 ### Your First Agent in 5 Minutes
 
 ```python
-from adk_course import AgentConfig, BasicAgent
+from adk.core import AgentConfig, BasicAgent
 import asyncio
 
 async def main():
@@ -114,8 +115,8 @@ asyncio.run(main())
 
 ```bash
 # Clone the repository
-git clone https://github.com/dfbustosus/adk-scratch-course.git
-cd adk-scratch-course
+git clone https://github.com/dfbustosus/google-adk-toolkit.git
+cd google-adk-toolkit
 
 # Set up development environment
 python -m venv venv
@@ -165,32 +166,25 @@ make format
 
 ## 📖 Documentation
 
-- **📚 [Full Documentation](https://dfbustosus.github.io/adk-scratch-course)**: Complete course materials and API reference
-- **🎓 [Lesson Materials](lessons/)**: Structured learning content with exercises
-- **🔧 [API Reference](https://dfbustosus.github.io/adk-scratch-course/api/)**: Detailed code documentation
+- **📚 [Full Documentation](https://dfbustosus.github.io/google-adk-toolkit)**: Complete project documentation and API reference.
+- **🔧 [API Reference](https://dfbustosus.github.io/google-adk-toolkit/api/)**: Detailed code documentation.
 - **💡 [Examples](examples/)**: Practical code examples and templates
 
 ## 🏗️ Repository Structure
 
 ```text
-adk-scratch-course/
+google-adk-toolkit/
 ├── .github/                 # GitHub workflows and templates
+├── agents/                  # Directory for agent packages
 ├── docs/                    # Documentation source
-├── lessons/                 # Course lessons (01-12)
-├── src/adk_course/         # Main Python package
+├── src/adk/                 # Main Python package
 │   ├── core.py             # Agent core functionality
 │   ├── utils.py            # Utility functions
-│   ├── cli.py              # Command-line interface
-│   └── exceptions.py       # Custom exceptions
-├── tests/                  # Test suite
-│   ├── unit/               # Unit tests
-│   └── integration/        # Integration tests
-├── examples/               # Example agents and code
-├── scripts/                # Utility scripts
-├── pyproject.toml          # Project configuration
-├── requirements*.txt       # Dependencies
-├── Makefile               # Development commands
-└── README.md              # This file!
+│   └── cli.py              # Command-line interface
+├── tests/                   # Test suite
+├── pyproject.toml           # Project configuration
+├── Makefile                # Development commands
+└── README.md               # This file!
 ```
 
 ## 🤝 Contributing
@@ -206,7 +200,7 @@ We welcome contributions! Here's how to get started:
 7. **✅ Run the full test suite**: `make check`
 8. **📤 Submit a pull request**
 
-See our [Contributing Guide](.github/CONTRIBUTING.md) for detailed information.
+See our [Contributing Guide](CONTRIBUTING.md) for detailed information.
 
 ### Development Commands
 
@@ -295,7 +289,7 @@ This course prepares you to build various types of intelligent agents:
 
 ## 🏆 Success Stories
 
-Students who have completed this course have gone on to:
+This toolkit can be used to build a variety of powerful agents:
 
 - Build production customer service bots handling 1000+ daily conversations
 - Create data analysis agents saving 20+ hours per week of manual work
@@ -309,11 +303,11 @@ Students who have completed this course have gone on to:
 - **📖 Documentation**: Check our comprehensive docs first
 - **❓ GitHub Issues**: Report bugs or request features
 - **💭 Discussions**: Ask questions and share ideas
-- **👥 Community**: Connect with other learners
+- **👥 Community**: Connect with other developers
 
 ### 🐛 Found a Bug?
 
-1. Check if it's already reported in [Issues](https://github.com/dfbustosus/adk-scratch-course/issues)
+1. Check if it's already reported in [Issues](https://github.com/dfbustosus/google-adk-toolkit/issues)
 2. If not, create a new issue with:
 
    - Clear description of the problem
@@ -323,7 +317,7 @@ Students who have completed this course have gone on to:
 
 ### 💡 Have an Idea?
 
-We'd love to hear it! Create a [Feature Request](https://github.com/dfbustosus/adk-scratch-course/issues/new?template=feature_request.yml) with:
+We'd love to hear it! Create a [Feature Request](https://github.com/dfbustosus/google-adk-toolkit/issues/new?template=feature_request.yml) with:
 - Description of the feature
 - Use case and benefits
 - Any implementation ideas
@@ -339,7 +333,7 @@ Special thanks to:
 - **Google Cloud Team** for the amazing AI Platform and services
 - **Open Source Community** for the fantastic Python packages we use
 - **Early Adopters** who provided valuable feedback and contributions
-- **Contributors** who help make this course better every day
+- **Contributors** who help make this toolkit better every day
 
 ## 📈 Project Status
 
@@ -352,8 +346,8 @@ Special thanks to:
 
 <div align="center">
 
-**Ready to build amazing AI agents? [Start with Lesson 01!](lessons/lesson-01/)**
+**Ready to build amazing AI agents? [Get started now!](#-quick-start)**
 
-[⭐ Star this repo](https://github.com/dfbustosus/adk-scratch-course) | [📖 Read the docs](https://dfbustosus.github.io/adk-scratch-course) | [💬 Join discussions](https://github.com/dfbustosus/adk-scratch-course/discussions)
+[⭐ Star this repo](https://github.com/dfbustosus/google-adk-toolkit) | [📖 Read the docs](https://dfbustosus.github.io/google-adk-toolkit) | [💬 Join discussions](https://github.com/dfbustosus/google-adk-toolkit/discussions)
 
 </div>

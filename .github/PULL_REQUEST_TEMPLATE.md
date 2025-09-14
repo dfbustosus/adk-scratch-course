@@ -31,7 +31,7 @@ Closes #(issue number)
 ## Lessons Affected
 <!-- If this change affects any lessons, list them here -->
 
-- [ ] Lesson 01 - Introduction to GDK and Agents
+- [ ] Lesson 01 - Introduction to ADK and Agents
 - [ ] Lesson 02 - Setting Up Your Development Environment
 - [ ] Lesson 03 - Basic Agent Architecture
 - [ ] Lesson 04 - Agent Communication Patterns
